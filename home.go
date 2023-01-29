@@ -10,11 +10,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
-func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	// if token == "" || claims == nil {
-	// 	http.Redirect(w, r, "/login", http.StatusMovedPermanently)
-	// }
-	// w.Header().Set("Content-Type", "mutipart/form-data")
+func GetHomeHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles(path.Join("templates", "home.html"))
 	if err != nil {
 		panic(err)

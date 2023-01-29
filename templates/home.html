@@ -23,5 +23,25 @@
     <button class="btn btn-danger">
       <a href="/delete">Delete</a>
     </button>
+    <br /><br /><br />
+    <button class="btn btn-info genesisBlock" onclick="getGenesis()">
+      Genesis Block
+    </button>
+    <button class="btn btn-dark nextBlock">Next Blocks</button>
+    <div class="container"></div>
+    <script>
+      // genesis = document.getElementsByClassName("genesisBlock");
+      // nextBlock = document.getElementsByClassName(".nextBlocks");
+
+      function getGenesis() {
+        fetch("/genesis").then((data) => showBlock(data));
+      }
+      function showBlock(data) {
+        let container = document.querySelector(".container");
+        let p = document.createElement("p");
+        p.appendChild = `<pre>${data}</pre>`;
+        container.appendChild(p);
+      }
+    </script>
   </body>
 </html>

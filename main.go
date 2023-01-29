@@ -33,9 +33,11 @@ func main() {
 	r.HandleFunc("/login", LoginHandler)
 	var imgServer = http.FileServer(http.Dir("./public/"))
 	r.PathPrefix("/public/").Handler(http.StripPrefix("/public/", imgServer))
-	r.HandleFunc("/home", HomeHandler)
+	r.HandleFunc("/home", GetHomeHandler)
 	r.HandleFunc("/update", UpdateHandler)
 	r.HandleFunc("/delete", DeleteHandler)
+	r.HandleFunc("/genesis", GenerateGenesisBlock)
+	r.HandleFunc("/allBlocks", MainChain).Methods("GET")
 	defer func() {
 		if err := client.Disconnect(ctx); err != nil {
 			log.Fatal(err)
